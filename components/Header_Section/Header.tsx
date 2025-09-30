@@ -7,15 +7,20 @@ import CartIcon from './CartIcon';
 import FavoriteButton from './FavoriteButton';
 import SignIn from './SignIn';
 import MobileMenu from './MobileMenu';
+import { currentUser } from '@clerk/nextjs/server';
+import { ClerkLoaded } from '@clerk/nextjs';
+import { SignedIn, UserButton } from '@clerk/nextjs';
 
 
 
 
-const Header = () => {
+const Header = async () => {
+  const user = await currentUser();
+  console.log(user)
   return (
     <header>
       <Container className="bg-white py-5 flex items-center justify-between border-b border-b-black/20">
-        <div className='w-auto md:w-1/3 flex items-center gap-2.5 justify-start md:gap-0'>
+        <div className="w-auto md:w-1/3 flex items-center gap-2.5 justify-start md:gap-0">
           <MobileMenu />
           <Logo />
         </div>
@@ -24,7 +29,14 @@ const Header = () => {
           <SearchBar />
           <CartIcon />
           <FavoriteButton />
-          <SignIn />
+
+          {/* Clerk setup  */}
+          <ClerkLoaded>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            {!user && <SignIn />}
+          </ClerkLoaded>
         </div>
       </Container>
     </header>
