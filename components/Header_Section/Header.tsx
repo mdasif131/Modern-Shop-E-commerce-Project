@@ -16,10 +16,9 @@ import { SignedIn, UserButton } from '@clerk/nextjs';
 
 const Header = async () => {
   const user = await currentUser();
-  console.log(user)
   return (
     <header>
-      <Container className="bg-white py-5 flex items-center justify-between border-b border-b-black/20">
+      <Container className="bg-white py-5 flex items-center justify-between ">
         <div className="w-auto md:w-1/3 flex items-center gap-2.5 justify-start md:gap-0">
           <MobileMenu />
           <Logo />

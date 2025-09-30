@@ -3,9 +3,11 @@ import Container from './Container'
 
 const Footer = () => {
   return (
-    <Container>
-      <div>Footer</div>
-    </Container>
+    <footer>
+      <Container>
+        <div>Footer</div>
+      </Container>
+    </footer>
   );
 }
 
